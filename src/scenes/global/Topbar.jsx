@@ -15,7 +15,7 @@ const Topbar = () => {
   const colorMode = useContext(ColorModeContext);
 
   return (
-    <Box display="flex" justifyContext="space-between" p={2}>
+    <Box display="flex" justifyContent="space-between" p={2}>
       {/* SEARCHBAR */}
       <Box
         display="flex"
@@ -46,7 +46,6 @@ const Topbar = () => {
           <PersonOutlinedIcon />
         </IconButton>
       </Box>
-      <IconButton sx={{ display: "flex" }}></IconButton>
     </Box>
   );
 };
