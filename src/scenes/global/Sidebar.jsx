@@ -24,7 +24,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
     <MenuItem
       active={selected === title}
       style={{ color: colors.grey[100] }}
-      onclick={() => setSelected(title)}
+      onClick={() => setSelected(title)}
       icon={icon}
     >
       <Typography>{title}</Typography>
@@ -92,7 +92,7 @@ const Sidebar = () => {
             <Box mb="25px">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
-                  alt="Profile Photo"
+                  alt="Profile"
                   width="100px"
                   height="100px"
                   src={`../../assets/user.png`}
