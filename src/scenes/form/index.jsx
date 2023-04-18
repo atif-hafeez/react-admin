@@ -50,7 +50,7 @@ const Form = () => {
           handleBlur,
           handleChange,
           handleSubmit,
-        }) => {
+        }) => (
           <form onSubmit={handleSubmit}>
             <Box
               display="grid"
@@ -153,12 +153,17 @@ const Form = () => {
                 error={!!touched.address2 && !!errors.address2}
                 helperText={touched.address2 && errors.address2}
                 sx={{
-                  gridColumn: "span 2",
+                  gridColumn: "span 4",
                 }}
               />
             </Box>
-          </form>;
-        }}
+            <Box display="flex" justifyContent="end" mt="20px">
+              <Button type="submit" color="secondary" variant="contained">
+                Create New User
+              </Button>
+            </Box>
+          </form>
+        )}
       </Formik>
     </Box>
   );
