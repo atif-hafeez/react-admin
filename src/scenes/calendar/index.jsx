@@ -1,5 +1,6 @@
 import { useState } from "react";
-import FullCalendar, { formatDate } from "@fullcalendar/react";
+import FullCalendar from "@fullcalendar/react";
+import { formatDate } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -34,16 +35,16 @@ const Calendar = () => {
         allDay: selected.allDay,
       });
     }
+  };
 
-    const handleEventClick = (selected) => {
-      if (
-        window.confirm(
-          `Are you sure you want to delete the event '${selected.event.title}'`
-        )
-      ) {
-        selected.event.remove();
-      }
-    };
+  const handleEventClick = (selected) => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete the event '${selected.event.title}'`
+      )
+    ) {
+      selected.event.remove();
+    }
   };
 
   return (
@@ -74,7 +75,7 @@ const Calendar = () => {
                   secondary={
                     <Typography>
                       {formatDate(event.start, {
-                        year: "Numeric",
+                        year: "numeric",
                         month: "short",
                         day: "numeric",
                       })}
@@ -84,6 +85,44 @@ const Calendar = () => {
               </ListItem>;
             })}
           </List>
+        </Box>
+
+        {/* CALENDAR */}
+        <Box flex="1 1 100%" ml="15px">
+          <FullCalendar
+            height="75vh"
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              listPlugin,
+            ]}
+            headerToolbar={{
+              left: "previous",
+              center: "title",
+              right: "dayGridMonth, timeGridWeek, timeGridDay, listMonth",
+            }}
+            initialView="dayGridMonth"
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            dayMaxEvents={true}
+            select={handleDateClick}
+            eventClick={handleEventClick}
+            eventsSet={(events) => setCurrentEvents(events)}
+            initialEvents={[
+              {
+                id: "1234",
+                title: "All Day Event",
+                date: "2023-04-19",
+              },
+              {
+                id: "1235",
+                title: "Timed Event",
+                date: "2023-04-22",
+              },
+            ]}
+          />
         </Box>
       </Box>
     </Box>
